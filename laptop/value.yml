@@ -1,0 +1,10 @@
+name: CI
+on: push
+jobs:
+  bulid:
+    run-on: ubuntu-latest
+    steps:
+       -user: actions/checkout@v4
+       -run: echo "Build started for $GITHUB_SHA"
+       -run: ls -la
+
