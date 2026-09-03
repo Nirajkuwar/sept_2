@@ -1,8 +1,15 @@
-name: First CI
+name: CI
 on: push
 jobs:
-  greet:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Hello from GitHub Actions!"
+      - run: echo "Running tests"
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Deploying to production"
+      
