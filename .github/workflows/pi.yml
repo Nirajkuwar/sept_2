@@ -1,12 +1,16 @@
 name: CI
-on: push
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "where to deploy"
+        type: choice
+        options: [staging, production]
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: prod
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Deploy
-        env:
-          TOKEN: ${{ secrets.DEPLOY_TOKEN }}
-        run: echo "Deploying to production"
+      - run: echo "deploying to ${{ inputs.target }}"
